@@ -2,12 +2,7 @@ import ratelimit from "../config/upstash.js";
 
 const rateLimiter = async (req, res, next) => {
   try {
-    // ✅ Skip rate limiting in development
-    if (process.env.NODE_ENV !== "production") {
-      return next();
-    }
-
-    const { success } = await ratelimit.limit("my-limit-key");
+    const { success } = await ratelimit.limit("my-rate-limit");
 
     if (!success) {
       return res.status(429).json({
@@ -17,8 +12,8 @@ const rateLimiter = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.error("Rate limit error:", error.message);
-    next(); // ✅ Don’t break your app if rate limit fails
+    console.log("Rate limit error", error);
+    next(error);
   }
 };
 
