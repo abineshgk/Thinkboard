@@ -14,7 +14,7 @@
   "dependencies": {
     "@upstash/ratelimit": "^2.0.5",
     "@upstash/redis": "^1.34.9",
-    "cors": "^2.8.5",
+    "cors": "^2.8.6",
     "dotenv": "^17.2.2",
     "express": "^4.21.2",
     "mern_stack-learn": "file:..",
